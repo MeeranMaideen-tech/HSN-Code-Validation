@@ -1,0 +1,34 @@
+{
+  "agent": {
+    "name": "HSN Code Validator",
+    "description": "An agent that validates HSN codes against a master Excel dataset.",
+    "language": "en"
+  },
+  "intents": [
+    {
+      "name": "ValidateHSNCode",
+      "trainingPhrases": [
+        "Validate HSN code 01011010",
+        "Check if 0101 is a valid HSN",
+        "Is 01012100 a correct HSN code?",
+        "HSN code 01",
+        "Validate these codes: 01, 0101, 01012100"
+      ],
+      "parameters": [
+        {
+          "name": "hsncode",
+          "entity": "@sys.number",
+          "isList": true,
+          "prompts": [
+            "Please provide the HSN code(s) you want to validate."
+          ]
+        }
+      ],
+      "fulfillment": {
+        "enabled": true,
+        "script": "fulfillment/validate_hsn.py"
+      }
+    }
+  ],
+  "entities": []
+}

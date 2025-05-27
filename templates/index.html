@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HSN Code Validator</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 HSN Code Validator</h1>
+        <form method="post">
+            <input type="text" name="hsn_codes" placeholder="Enter HSN codes (e.g. 0101, 01)" required>
+            <button type="submit">Validate</button>
+        </form>
+
+        {% if results %}
+            <div class="results">
+                <h2>Results:</h2>
+                <ul>
+                    {% for result in results %}
+                        <li>
+                            {% if result.valid %}
+                                ✅ <strong>{{ result.hsn_code }}</strong> is valid: {{ result.description }}
+                            {% else %}
+                                ❌ <strong>{{ result.hsn_code }}</strong> is invalid. Reason: {{ result.reason }}
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
